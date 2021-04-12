@@ -1,0 +1,57 @@
+@import './resets';
+@import './variables';
+@import './functions';
+
+
+/*@mixin escribir pedazos de piezas de codigo para incorporar en el css*/
+@mixin  flexCentrado($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true){
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color:darken($text-color, 100%);
+    }
+}
+@mixin mobile(){
+    @media (max-width: $mobile){
+        /* @content nos indica incluir todo el scc que tiene el @include mobile*/
+        @content;    
+    }
+}
+
+.language-body {
+    background: $primary-color;
+    color:$text-color;
+    }
+.main{
+    @include flexCentrado(row);
+    width: 80%-40%;
+    margin: 0 auto;
+    /* & es igual a decir el nombre del padre*/
+    /* #{&} es igual a decir que este elemento va a estar dentro del padre*/
+    #{&}__paragraph1{
+        font-weight: weight(bold);
+        &:hover {
+            color:pink;
+        }
+    }
+
+    #{&}__paragraph2{
+        @extend .main__paragraph1;
+        &:hover {
+            color: $accent-color;
+        }
+    }
+    @include mobile(){
+        flex-direction: column;
+    }
+}
+
+.light  {
+    @include theme($light-theme: true);
+}
