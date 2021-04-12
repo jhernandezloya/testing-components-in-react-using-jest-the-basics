@@ -26,7 +26,7 @@ export const delElement = (clase,method,param) => {
 export const changeElement = (clase,method,param) => {
   return async dispatch => {
     const objectoEntidad = await EntitiesFactory.callMethodMiddleware(clase,method,param)
-   dispatch({ type: types.REPLACE, payload: objectoEntidad,reducer:'CounterOpc' });
+   dispatch({ type: types.REPLACE, payload: objectoEntidad});
   };
 }
 export default class CounterAction{};
