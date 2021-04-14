@@ -1,7 +1,7 @@
 
 import PersonaService from '../api/PersonaService';
 import CRMservice from '../api/CRMService';
-
+import {Oferta} from '../store/Entities';
 
 class OfertaMiddleware {
 
@@ -25,6 +25,29 @@ class OfertaMiddleware {
           }
         }
         return {esoferta:0};
+      }
+
+      async replaceTestOferta(param) {
+        
+        const b = (typeof this === 'undefined');
+        if(!b) {
+          console.log('-------');
+        }
+        const entidadCounter =  new Oferta();
+        entidadCounter.rut = param.ruts;
+        entidadCounter.monto = param.monto;
+        return entidadCounter;
+      }
+
+      async replaceTestsoloMonto(param) {
+        
+        const b = (typeof this === 'undefined');
+        if(!b) {
+          console.log('-------');
+        }
+        const entidadCounter =  new Oferta();
+        entidadCounter.monto = param.monto;
+        return entidadCounter;
       }
 }
 

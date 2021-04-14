@@ -20,12 +20,19 @@ class MapClasses {
 
      mapMethods(type)    {
         this.a = 0;
-        const {obtenerNumeroPersonaService,enviarFormulario,generarOferta,testElemento} = type;
+        const {obtenerNumeroPersonaService,enviarFormulario,generarOferta,
+            testElemento,replaceTestOferta,replaceTestCounter,replaceTestsoloMonto,
+            replaceTestCountersolonombre} = type;
         const mapMethods = new Map([ 
                      ['obtenerNumeroPersonaService', obtenerNumeroPersonaService],
                      ['enviarFormulario',enviarFormulario],
                      ['generarOferta',generarOferta],
                      ['testElemento',testElemento],
+                     ['replaceTestOferta',replaceTestOferta],
+                     ['replaceTestCounter',replaceTestCounter],
+                     ['replaceTestsoloMonto',replaceTestsoloMonto],
+                     ['replaceTestCountersolonombre',replaceTestCountersolonombre],
+                     
                     ]); 
         return mapMethods;
     }

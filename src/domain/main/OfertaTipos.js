@@ -1,5 +1,5 @@
 const types = {
-    ENTITY:'Counter',
+    ENTITY:'Oferta',
     REPLACE: 'REPLACE',
     ADD: 'ADD',
     DELETE: 'DELETE',

@@ -35,6 +35,31 @@ class PersonaMiddleware {
         }
         return new Counter(param.ruts,param.name);
       }
+  
+  async replaceTestCounter(param) {
+        
+        const b = (typeof this === 'undefined');
+        if(!b) {
+          console.log('-------');
+        }
+        const entidadCounter =  new Counter();
+        entidadCounter.rut = param.ruts;
+        entidadCounter.name = param.name;
+        return entidadCounter;
+      }
+  
+  async replaceTestCountersolonombre(param) {
+        
+        const b = (typeof this === 'undefined');
+        if(!b) {
+          console.log('-------');
+        }
+        const entidadCounter =  new Counter();
+        entidadCounter.name = param.name;
+        return entidadCounter;
+      }
 }
+
+
 
 export default new PersonaMiddleware;

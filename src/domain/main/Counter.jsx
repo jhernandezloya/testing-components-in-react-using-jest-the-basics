@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import {addElement,delElement,replaceElement,changeElement} from './CounterAction';
+import CounterAction from './CounterAction';
+import OfertaAction from './OfertaAction';
 
 class Counter extends React.Component {
 
@@ -9,12 +10,9 @@ class Counter extends React.Component {
         this.state = {
             count: 0,
         };
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleDell = this.handleDell.bind(this);
-        this.handleReplace = this.handleReplace.bind(this);
-        this.handleChange = this.handleChange.bind(this);
         this.inputRut = React.createRef();
         this.inputName = React.createRef();
+        this.inputMonto = React.createRef();
     }
 
     componentDidMount() {
@@ -27,7 +25,7 @@ class Counter extends React.Component {
         document.title = `You clicked ${count} times`;
     }
 
-    handleAdd() {
+    handleAdd = () => {
         
         const { adicionar } = this.props;
         const {count} = this.state;
@@ -38,7 +36,7 @@ class Counter extends React.Component {
                    ,name:this.inputName.current.value});
     }
 
-    handleChange() {
+    handleChange = () => {
         
       const { change } = this.props;
       const {count} = this.state;
@@ -49,7 +47,19 @@ class Counter extends React.Component {
                  ,name:this.inputName.current.value});
   }
 
-    handleReplace() {
+  handleChangeOferta = () => {
+        
+    const { changeOferta } = this.props;
+    const {count} = this.state;
+    this.setState({
+        count: count + 1,
+    });
+    changeOferta({ruts:this.inputRut.current.value
+               ,name:this.inputName.current.value
+               ,monto:this.inputMonto.current.value});
+}
+
+    handleReplace = () =>{
         
         const { reemplazar } = this.props;
         const {count} = this.state;
@@ -60,7 +70,7 @@ class Counter extends React.Component {
                  ,name:this.inputName.current.value});
     }
 
-    handleDell() {
+    handleDell = () => {
         
       const { eliminar } = this.props;
       const {count} = this.state;
@@ -71,43 +81,143 @@ class Counter extends React.Component {
                ,name:this.inputName.current.value});
   }
 
+  handleReplaceAttributeOferta = () => {
+        
+    const { reemplazarAttributeOferta } = this.props;
+    const {count} = this.state;
+    this.setState({
+      count: count + 1,
+  });
+    reemplazarAttributeOferta({ruts:this.inputRut.current.value
+              ,name:this.inputName.current.value,monto:this.inputMonto.current.value});
+  }
+
+  handleReplaceAttribute = () => {
+        
+    const { reemplazarAttributeCounter } = this.props;
+    const {count} = this.state;
+    this.setState({
+      count: count + 1,
+  });
+  reemplazarAttributeCounter({ruts:this.inputRut.current.value
+              ,name:this.inputName.current.value,monto:this.inputMonto.current.value});
+  }
+
     render() {
         const {principalStore} = this.props;
-        const {ruts} = principalStore;
+        const {ruts,name} = principalStore;
         
         return (
           <div>
             <p>
               You clicked 
-              {ruts} 
+              {ruts} {name}
               times 
             </p>
-            <input type="text" ref={this.inputRut} />
-            <input type="text" ref={this.inputName}  />
-            <button 
-              type="button" 
-              onClick={this.handleChange}
-            >
-                    Change only element
-            </button>
-            <button 
-              type="button" 
-              onClick={this.handleAdd}
-            >
-                    Add element
-            </button>
-            <button 
-              type="button" 
-              onClick={this.handleReplace}
-            >
-                    Replace Element
-            </button>
-            <button 
-              type="button" 
-              onClick={this.handleDell}
-            >
-                    Delete Element
-            </button>
+            <table>
+              <tr>
+                <th>
+                  <input type="text" ref={this.inputRut} />
+                </th>
+                <th>
+                  <input type="text" ref={this.inputName}  />
+                </th>
+                <th>
+                  <input type="text" ref={this.inputMonto}  />
+                </th>
+                <th>
+                  Sin valor
+                </th>
+                <th>
+                  Sin valor
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleChange}
+                  >
+                          Change only element
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleAdd}
+                  >
+                          Add element
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleReplace}
+                  >
+                          Replace Element
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleDell}
+                  >
+                          Delete Element
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleReplaceAttribute}
+                  >
+                          Replace attribute Element
+                  </button>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleChangeOferta}
+                  >
+                          Change only element Oferta
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleAdd}
+                  >
+                          Add element Oferta
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleReplace}
+                  >
+                          Replace Element Oferta
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleDell}
+                  >
+                          Delete Element Oferta
+                  </button>
+                </th>
+                <th>
+                  <button 
+                    type="button" 
+                    onClick={this.handleReplaceAttributeOferta}
+                  >
+                          Replace attribute Element Oferta
+                  </button>
+                </th>
+              </tr>
+            </table>
+
           </div>
         );
     }
@@ -127,13 +237,19 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => {
     return {
         adicionar: (param) =>{ 
-            dispatch(addElement('PersonaMiddleware','testElemento',param))},
+            dispatch(CounterAction.addElement('PersonaMiddleware','replaceTestCounter',param))},
         reemplazar: (param) =>{ 
-                dispatch(replaceElement('PersonaMiddleware','testElemento',param))},
+                dispatch(CounterAction.replaceElement('PersonaMiddleware','replaceTestCounter',param))},
         eliminar: (param) =>{ 
-                dispatch(delElement('PersonaMiddleware','testElemento',param))},
+                dispatch(CounterAction.delElement('PersonaMiddleware','replaceTestCounter',param))},
         change: (param) =>{ 
-                dispatch(changeElement('PersonaMiddleware','testElemento',param))}
+                dispatch(CounterAction.changeElement('PersonaMiddleware','replaceTestCounter',param))},
+        reemplazarAttributeCounter: (param) =>{ 
+                dispatch(CounterAction.replaceAttribute('PersonaMiddleware','replaceTestCountersolonombre',param))},
+        reemplazarAttributeOferta: (param) =>{ 
+                dispatch(OfertaAction.replaceAttribute('OfertaMiddleware','replaceTestsoloMonto',param))},
+        changeOferta: (param) =>{ 
+                dispatch(OfertaAction.changeElement('OfertaMiddleware','replaceTestOferta',param))},
     };
 };
 
