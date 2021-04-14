@@ -10,15 +10,7 @@ class GenericClass {
       }, {});
     };
 
-    const newElement = new Map();
-    Object.entries(item).forEach(([key, value]) =>
-      {
-        if(typeof value!=='undefined'){
-          newElement.set(key, value)
-        }
-      }
-    );
-    const newElementJSON = JSON.stringify(mapToObj(newElement));
+    const newElementJSON = JSON.stringify(mapToObj(Object.entries(item)));
     const itemElemento = JSON.parse(newElementJSON);
 
   
