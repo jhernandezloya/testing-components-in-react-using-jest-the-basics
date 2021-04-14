@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import CounterAction from './CounterAction';
-import OfertaAction from './OfertaAction';
+import MainAction from '../../action/MainAction';
+import initialType from '../../type/initialType';
 
 class Counter extends React.Component {
 
@@ -237,19 +237,19 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => {
     return {
         adicionar: (param) =>{ 
-            dispatch(CounterAction.addElement('PersonaMiddleware','replaceTestCounter',param))},
+            dispatch(MainAction.addElement('PersonaMiddleware','replaceTestCounter',param,initialType.REDUCER_COUNTER))},
         reemplazar: (param) =>{ 
-                dispatch(CounterAction.replaceElement('PersonaMiddleware','replaceTestCounter',param))},
+                dispatch(MainAction.replaceElement('PersonaMiddleware','replaceTestCounter',param,initialType.REDUCER_COUNTER))},
         eliminar: (param) =>{ 
-                dispatch(CounterAction.delElement('PersonaMiddleware','replaceTestCounter',param))},
+                dispatch(MainAction.delElement('PersonaMiddleware','replaceTestCounter',param,initialType.REDUCER_COUNTER))},
         change: (param) =>{ 
-                dispatch(CounterAction.changeElement('PersonaMiddleware','replaceTestCounter',param))},
+                dispatch(MainAction.changeElement('PersonaMiddleware','replaceTestCounter',param,initialType.REDUCER_COUNTER))},
         reemplazarAttributeCounter: (param) =>{ 
-                dispatch(CounterAction.replaceAttribute('PersonaMiddleware','replaceTestCountersolonombre',param))},
+                dispatch(MainAction.replaceAttribute('PersonaMiddleware','replaceTestCountersolonombre',param,initialType.REDUCER_COUNTER))},
         reemplazarAttributeOferta: (param) =>{ 
-                dispatch(OfertaAction.replaceAttribute('OfertaMiddleware','replaceTestsoloMonto',param))},
+                dispatch(MainAction.replaceAttribute('OfertaMiddleware','replaceTestsoloMonto',param,initialType.REDUCER_OFERTA))},
         changeOferta: (param) =>{ 
-                dispatch(OfertaAction.changeElement('OfertaMiddleware','replaceTestOferta',param))},
+                dispatch(MainAction.changeElement('OfertaMiddleware','replaceTestOferta',param,initialType.REDUCER_OFERTA))},
     };
 };
 

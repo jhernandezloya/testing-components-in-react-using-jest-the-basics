@@ -1,4 +1,3 @@
-
 const elementos = [];
 const CounterOpc = { elemento :elementos};
 const OfertaOpc = { elemento :elementos};

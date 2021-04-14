@@ -1,16 +1,16 @@
-import types from './CounterTipos';
+import initialType from '../../type/initialType';
 import initialState from '../../store/initialState';
 
 const CounterReducer = (state= initialState.CounterOpc, action) => {
-  if(action.entity === types.ENTITY)   {
+  if(action.reducer === initialType.REDUCER_COUNTER)   {
       switch (action.type) {
-        case types.REPLACE:
+        case initialType.REPLACE:
           return {
             ...state,
             elemento: action.payload
           };
           
-        case types.DELETE:  {
+        case initialType.DELETE:  {
           const isArray = Array.isArray(state.elemento);
           return  {
             ...state
@@ -18,7 +18,7 @@ const CounterReducer = (state= initialState.CounterOpc, action) => {
           }
         }
           
-        case types.ADD: {
+        case initialType.ADD: {
           const arrayElement =[];
           const arrayInsert = Array.isArray(state.elemento)?[...state.elemento,action.payload]:[...arrayElement,action.payload];
           return  {
@@ -27,7 +27,7 @@ const CounterReducer = (state= initialState.CounterOpc, action) => {
           }
         }
         
-        case types.REPLACE_ARRAY: {
+        case initialType.REPLACE_ARRAY: {
           const actionpayload = Array.isArray(state.elemento) ? action.payload:{};
           const findElement= Array.isArray(state.elemento) ?state.elemento.filter(item => item.compareUpd(action.payload)).length:false;
           return {
@@ -36,7 +36,7 @@ const CounterReducer = (state= initialState.CounterOpc, action) => {
             };
         }
 
-        case types.REPLACE_ATTRIBUTE: {
+        case initialType.REPLACE_ATTRIBUTE: {
           const elementReplace = Array.isArray(state.elemento) ? {}: Object.assign({}, state.elemento);
           const valor = action.payload.replaceAttribute(elementReplace);
           return {
